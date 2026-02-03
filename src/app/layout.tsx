@@ -1,11 +1,11 @@
-import type { Metadata } from 'next';
-import { Roboto } from 'next/font/google';
-import './globals.css';
-import Header from '../components/Header';
+import type { Metadata } from "next";
+import { Roboto } from "next/font/google";
+import "./globals.css";
+import Navbar from "../components/Navbar";
 
 const roboto = Roboto({
-  subsets: ['latin'],
-  weight: ['400'],
+  subsets: ["latin"],
+  weight: ["400"],
 });
 
 export default function RootLayout({
@@ -15,9 +15,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`flex flex-col ${roboto.className}`}>
-        <Header />
-        <main className="grow mx-auto w-full md:w-1/3">{children}</main>
+      <body
+        className={`w-full max-w-screen-xl overflow-auto mx-auto ${roboto.className}`}
+      >
+        <header className="sticky top-0 bg-white z-10 border-b">
+          <Navbar />
+        </header>
+        <main className="grow">{children}</main>
       </body>
     </html>
   );
