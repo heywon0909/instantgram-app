@@ -1,10 +1,9 @@
-'use client';
 import Link from 'next/link';
 import { BsSearchHeart } from 'react-icons/bs';
 import { FaPlus } from 'react-icons/fa';
 import { RiHome4Line } from 'react-icons/ri';
 
-export default function Header() {
+export default async function Header() {
   return (
     <header className="p-2 flex items-center justify-between">
       <Link href="/">
@@ -29,9 +28,7 @@ export default function Header() {
           </li>
           <li>
             <Link href="/login">
-              <button className="p-2 border rounded-md" onClick={() => signIn()}>
-                Sign in
-              </button>
+              <button className="p-2 border rounded-md">Sign in</button>
             </Link>
           </li>
         </ul>

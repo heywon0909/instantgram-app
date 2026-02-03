@@ -1,22 +1,33 @@
 import Image from 'next/image';
 import { CiHeart } from 'react-icons/ci';
 import { BsEmojiSmile } from 'react-icons/bs';
+import { Post } from '../service/post';
+import { urlFor } from '../service/sanity/image';
 
-export default function PostCard() {
+type Props = Post;
+
+export default function PostCard({ author, likes, image, body }: Props) {
   return (
     <article className="shadow-md border border-gray-100 rounded-md">
       <section className="flex items-center p-2 gap-2">
         <button className="rounded-full bg-gray-200 w-14 h-14">
           {/* <Image src="/people.png" alt="Instagram Logo" className="rounded-full" width={40} height={30} /> */}
         </button>
-        <h1 className="font-bold">dream.coder.ellie</h1>
+        <h1 className="font-bold">{author}</h1>
       </section>
-      <Image src="/people.png" alt="Post Image" width={500} height={500} className="w-full max-h-[790px]" />
+      <Image
+        src={urlFor(image).width(800).height(600).url()}
+        alt="Post Image"
+        width={500}
+        height={500}
+        className="w-full "
+      />
       <section className="mt-2 p-2 border-b-2 border-gray-300">
+        <input type="text" disabled value={body.map(v => v.children.text).join(' ')} />
         <button>
           <CiHeart size={20} />
         </button>
-        <p>100 like</p>
+        <p> {likes} like</p>
         <span className="w-full flex gap-2">
           <h3 className="font-bold">dream.coder.ellie</h3>
           <p>amazing</p>
