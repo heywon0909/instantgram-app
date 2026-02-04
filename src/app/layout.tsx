@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/Navbar";
+import AuthContext from "../context/AuthContext";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -18,10 +19,12 @@ export default function RootLayout({
       <body
         className={`w-full max-w-screen-xl overflow-auto mx-auto ${roboto.className}`}
       >
-        <header className="sticky top-0 bg-white z-10 border-b">
-          <Navbar />
-        </header>
-        <main className="grow">{children}</main>
+        <AuthContext>
+          <header className="sticky top-0 bg-white z-10 border-b">
+            <Navbar />
+          </header>
+          <main className="grow">{children}</main>
+        </AuthContext>
       </body>
     </html>
   );
