@@ -1,6 +1,8 @@
+import { defineQuery, groq } from "next-sanity";
 import { client } from "./sanity";
+import { authOptions } from "@/src/app/api/auth/[...nextauth]/route";
 
-type OAuthUser = {
+export type OAuthUser = {
   id: string;
   email: string;
   name: string;
@@ -20,4 +22,12 @@ export async function addUser({ id, username, email, name, image }: OAuthUser) {
     followers: [],
     bookmarks: [],
   });
+}
+
+export async function getFollowing(username: string) {
+  const follwingQuery = defineQuery(
+    groq`*[_type == 'user' && username == '${username}']{ following[] -> }`,
+  );
+  const { following } = (await client.fetch(follwingQuery))?.[0];
+  return following;
 }
