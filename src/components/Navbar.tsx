@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import HomeIcon from "./ui/icons/HomeIcon";
 import HomeFillIcon from "./ui/icons/HomeFillIcon";
@@ -51,7 +50,7 @@ export default function Navbar() {
           {user && (
             <li>
               <Link href={`/user/${user.username}`}>
-                <Avatar image={user.image} />
+                <Avatar image={user.image} size="small" highlight />
               </Link>
             </li>
           )}
