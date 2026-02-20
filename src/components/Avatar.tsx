@@ -15,7 +15,7 @@ export default function Avatar({
       <img
         alt="user profile"
         src={image ?? undefined}
-        className={`rounded-full p-[0.1rem] bg-white ${getImageSizeStyle(size)}`}
+        className={`rounded-full p-[0.1rem] bg-white ${getImageSizeStyle(size)} object-cover`}
         referrerPolicy="no-referrer"
       />
     </div>
