@@ -16,18 +16,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`w-full max-w-screen-xl overflow-auto mx-auto ${roboto.className} flex flex-col`}
-      >
+    <html lang="en" className={roboto.className}>
+      <body className={`w-full bg-neutral-50 overflow-auto`}>
         <AuthContext>
           <header className="sticky top-0 bg-white z-10 border-b">
-            <Navbar />
+            <div className="max-w-screen-xl mx-auto">
+              <Navbar />
+            </div>
           </header>
-          <main className="w-full flex justify-center bg-neutral-50 grow">
+          <main className="w-full flex justify-center bg-neutral-50">
             <SWRConfigConext>{children}</SWRConfigConext>
           </main>
         </AuthContext>
+        <div id="portal" />
       </body>
     </html>
   );
