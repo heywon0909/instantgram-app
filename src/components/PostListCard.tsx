@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { SimplePost } from "../model/post";
-import Avatar from "./Avatar";
 import CommentForm from "./CommentForm";
 import ActionBar from "./ActionBar";
 import { useState } from "react";

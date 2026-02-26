@@ -1,14 +1,14 @@
 "use client";
 
 import useSWR from "swr";
-import { DetailUser } from "../service/sanity/user";
+import { HomeUser } from "../service/sanity/user";
 import { PropagateLoader } from "react-spinners";
 import Link from "next/link";
 import Avatar from "./Avatar";
 import ScrollableBar from "./ui/Scrollable";
 
 export default function FollowingBar() {
-  const { data, isLoading, error } = useSWR<DetailUser>("/api/me");
+  const { data, isLoading, error } = useSWR<HomeUser>("/api/me");
   const users = data?.following && [
     ...data?.following,
     ...data?.following,

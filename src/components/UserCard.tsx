@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { ProfileUser } from "../service/sanity/user";
+import { SearchUser } from "../service/sanity/user";
 import Avatar from "./Avatar";
 
 type Props = {
-  user: ProfileUser;
+  user: SearchUser;
 };
 export default function UserCard({
   user: { name, username, image, following, followers },

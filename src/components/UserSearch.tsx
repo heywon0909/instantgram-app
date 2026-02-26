@@ -2,7 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import useSWR from "swr";
-import { ProfileUser } from "../service/sanity/user";
+import { SearchUser } from "../service/sanity/user";
 import GridSpinner from "./ui/GridSpinner";
 import UserCard from "./UserCard";
 import useDebounce from "../hooks/useDebounce";
@@ -14,7 +14,7 @@ export default function UserSearch() {
     data: users,
     isLoading,
     error,
-  } = useSWR<ProfileUser[]>(`/api/search/${debounceKeyword}`);
+  } = useSWR<SearchUser[]>(`/api/search/${debounceKeyword}`);
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
