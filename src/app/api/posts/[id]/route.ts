@@ -5,7 +5,7 @@ import { authOptions } from "../../auth/[...nextauth]/route";
 
 export async function GET(
   request: NextRequest,
-  context: RouteContext<"/api/post/[id]">,
+  context: RouteContext<"/api/posts/[id]">,
 ) {
   const { id } = await context.params;
   const session = await getServerSession(authOptions);
