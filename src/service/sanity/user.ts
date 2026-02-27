@@ -1,29 +1,5 @@
+import { AuthUser, SearchUser } from "@/src/model/user";
 import { client } from "./sanity";
-
-export type AuthUser = {
-  id: string;
-  email: string;
-  name: string;
-  username: string;
-  image?: string | null;
-};
-
-export type SimpleUser = Pick<AuthUser, "username" | "image">;
-
-export type HomeUser = AuthUser & {
-  following: SimpleUser[];
-  followers: SimpleUser[];
-  bookmakrs: string[];
-};
-
-export type SearchUser = AuthUser & {
-  following: number;
-  followers: number;
-};
-
-export type ProfileUser = SearchUser & {
-  posts: number;
-};
 
 export async function addUser({ id, username, email, name, image }: AuthUser) {
   return client.createIfNotExists({

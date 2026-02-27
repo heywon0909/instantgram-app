@@ -1,6 +1,24 @@
-export type User = {
+export type AuthUser = {
+  id: string;
+  email: string;
   name: string;
   username: string;
-  email: string;
-  image?: string;
+  image?: string | null;
+};
+
+export type SimpleUser = Pick<AuthUser, "username" | "image">;
+
+export type HomeUser = AuthUser & {
+  following: SimpleUser[];
+  followers: SimpleUser[];
+  bookmakrs: string[];
+};
+
+export type SearchUser = AuthUser & {
+  following: number;
+  followers: number;
+};
+
+export type ProfileUser = SearchUser & {
+  posts: number;
 };
