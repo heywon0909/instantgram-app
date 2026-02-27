@@ -10,9 +10,9 @@ type Props = {
   post: SimplePost;
 };
 export default function PostDetail({ post }: Props) {
-  const { id, userImage, username, image, createdAt, likes } = post;
+  const { id, userImage, username, image } = post;
   console.log("id", id);
-  const { data } = useSWR<FullPost>(`/api/post/${id}`);
+  const { data } = useSWR<FullPost>(`/api/posts/${id}`);
   const comments = data?.comments;
 
   return (
@@ -47,7 +47,7 @@ export default function PostDetail({ post }: Props) {
               ),
             )}
         </ul>
-        <ActionBar likes={likes} username={username} createdAt={createdAt} />
+        <ActionBar post={post} />
         <CommentForm />
       </div>
     </section>
