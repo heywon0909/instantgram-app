@@ -10,14 +10,16 @@ const simplePostProjection = `
     "text":comments[0].comment,
     "comments": count(comments),
     "id":_id,
-    "createdAt":_createdAt
+    "createdAt":_createdAt,
+    
+    
 `; // post.author.username -> post.username
 
 export async function getFollowingPostsOf(username: string) {
   return client
     .fetch(
       `
-        *[_type =="post" && author->username == "${username}"
+        *[_type =="post" && author->username == "${username}" 
         || author._ref in *[_type == "user" && username =="${username}"].following[]._ref] 
          | order(_createdAt desc){${simplePostProjection}}
         `,
@@ -81,7 +83,7 @@ export async function getSavedPostOf(username: string) {
     .fetch(
       `
     
-    *[_type =="post" &&  _id in *[_type == "user" && username =="${username}"].bookmakrs[]._ref ] | order(_createdAt desc) {
+    *[_type =="post" &&  _id in *[_type == "user" && username =="${username}"].bookmarks[]._ref ] | order(_createdAt desc) {
      ${simplePostProjection}
     }`,
     )
@@ -106,4 +108,24 @@ export async function dislikePost(postId: string, userId: string) {
     .patch(postId)
     .unset([`likes[_ref=="${userId}"]`])
     .commit();
+}
+
+export async function addComment(
+  postId: string,
+  userId: string,
+  comment: string,
+) {
+  return client
+    .patch(postId) //
+    .setIfMissing({ comments: [] })
+    .append("comments", [
+      {
+        author: {
+          _ref: userId,
+          _type: "reference",
+        },
+        comment: comment,
+      },
+    ])
+    .commit({ autoGenerateArrayKeys: true });
 }

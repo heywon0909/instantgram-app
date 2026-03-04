@@ -1,14 +1,14 @@
 "use client";
-import useSWR from "swr";
-import { HomeUser, ProfileUser } from "../service/sanity/user";
 import Button from "./Button";
+import useMe from "../hooks/me";
+import { ProfileUser } from "../model/user";
 
 type Props = {
   user: ProfileUser;
 };
 export default function FollowButton({ user }: Props) {
   const { username } = user;
-  const { data: loggedInUser } = useSWR<HomeUser>("/api/me");
+  const { user: loggedInUser } = useMe();
 
   const showButton = loggedInUser && loggedInUser.username !== username;
   const following =

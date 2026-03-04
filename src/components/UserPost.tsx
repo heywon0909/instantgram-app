@@ -1,11 +1,10 @@
 "use client";
 import { useState } from "react";
-import { ProfileUser } from "../service/sanity/user";
-import useSWR from "swr";
 import PostIcon from "./ui/icons/PostIcon";
 import BookmarkIcon from "./ui/icons/BookmarkIcon";
 import HeartIcon from "./ui/icons/HeartIcon";
 import PostGrid from "./PostGrid";
+import { ProfileUser } from "../model/user";
 
 type Props = {
   user: ProfileUser;

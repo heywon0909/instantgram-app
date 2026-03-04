@@ -2,10 +2,10 @@
 
 import { FormEvent, useState } from "react";
 import useSWR from "swr";
-import { SearchUser } from "../service/sanity/user";
 import GridSpinner from "./ui/GridSpinner";
 import UserCard from "./UserCard";
 import useDebounce from "../hooks/useDebounce";
+import { SearchUser } from "../model/user";
 
 export default function UserSearch() {
   const [keyword, setKeyword] = useState("");
