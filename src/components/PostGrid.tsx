@@ -11,7 +11,7 @@ export default function PostGrid({ username, query }: Props) {
   const { data: posts, isLoading } = useSWR<SimplePost[]>(
     `/api/users/${username}/${query}`,
   );
-  console.log(posts);
+
   // /api/users/${username}/posts
   // /api/users/${username}/liked
   // /api/users/${username}/bookmarks

@@ -1,4 +1,4 @@
-import { ProfileUser } from "../service/sanity/user";
+import { ProfileUser } from "../model/user";
 import Avatar from "./Avatar";
 import FollowButton from "./FollowButton";
 
