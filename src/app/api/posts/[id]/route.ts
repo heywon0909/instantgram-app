@@ -7,7 +7,7 @@ export async function GET(
   context: RouteContext<"/api/posts/[id]">,
 ) {
   const { id } = await context.params;
-  withSessionUser(async () => {
+  return withSessionUser(async () => {
     return getPost(id).then((data) => NextResponse.json(data));
   });
 }

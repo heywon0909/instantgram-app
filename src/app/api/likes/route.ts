@@ -3,7 +3,7 @@ import { dislikePost, likePost } from "@/src/service/sanity/post";
 import { withSessionUser } from "@/src/util/session";
 
 export async function PUT(req: NextRequest) {
-  withSessionUser(async (user) => {
+  return withSessionUser(async (user) => {
     const { id, like } = await req.json();
 
     if (!id || like === undefined) {

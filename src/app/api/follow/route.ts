@@ -3,7 +3,7 @@ import { follow, unfollow } from "@/src/service/sanity/user";
 import { withSessionUser } from "@/src/util/session";
 
 export async function PUT(req: NextRequest) {
-  withSessionUser(async (user) => {
+  return withSessionUser(async (user) => {
     const { id: targetId, follow: isFollow } = await req.json();
 
     if (!targetId || follow === undefined) {

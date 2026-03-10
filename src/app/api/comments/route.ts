@@ -3,7 +3,7 @@ import { addComment } from "@/src/service/sanity/post";
 import { withSessionUser } from "@/src/util/session";
 
 export async function POST(req: NextRequest) {
-  withSessionUser(async (user) => {
+  return withSessionUser(async (user) => {
     const { id, comment } = await req.json();
 
     if (!id || comment === undefined) {
