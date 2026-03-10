@@ -3,10 +3,19 @@ import { NextRequest, NextResponse } from "next/server";
 
 export { default } from "next-auth/middleware";
 export const config = {
-  matcher: ["/new", "/"],
+  matcher: [
+    "/new",
+    "/",
+    "/api/bookmarks",
+    "/api/comments",
+    "/api/likes",
+    "/api/follow",
+    "/api/me",
+    "/api/posts/:path*",
+  ],
 };
 
-export async function middleware(req: NextRequest) {
+export async function proxy(req: NextRequest) {
   const token = await getToken({ req });
 
   if (!token) {
