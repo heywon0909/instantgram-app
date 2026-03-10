@@ -1,16 +1,11 @@
 import { getUserByUsername } from "@/src/service/sanity/user";
-import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
-import { authOptions } from "../auth/[...nextauth]/route";
+import { withSessionUser } from "@/src/util/session";
 
 export async function GET() {
-  const session = await getServerSession(authOptions);
-  const user = session?.user;
-
-  if (!user) {
-    return new Response("Authentication Error", { status: 401 });
-  }
-  return getUserByUsername(user.username).then((data) => {
-    return NextResponse.json(data);
+  withSessionUser(async (user) => {
+    return getUserByUsername(user.username).then((data) => {
+      return NextResponse.json(data);
+    });
   });
 }
