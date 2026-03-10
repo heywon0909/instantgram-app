@@ -22,6 +22,7 @@ export default async function SigninPage({ searchParams }: Props) {
     return redirect("/");
   }
   const providers = (await getProviders()) ?? {};
+  console.log("providers", providers);
 
   return (
     <section className="flex justify-center mt-24">
