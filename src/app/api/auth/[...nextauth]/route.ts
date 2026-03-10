@@ -1,15 +1,28 @@
 import { addUser } from "@/src/service/sanity/user";
 import NextAuth, { AuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import type { Provider } from "next-auth/providers/index";
+
+const providers: Provider[] = [
+  GoogleProvider({
+    clientId: process.env.GOOGLE_CLIENT_ID || "",
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
+  }),
+];
+
+export const providerMap = providers.map((provider) => {
+  if (typeof provider === "function") {
+    const fuc: () => { id: string; name: string } = provider;
+    const providerData = fuc();
+    return { id: providerData.id, name: providerData.name };
+  } else {
+    return { id: provider.id, name: provider.name };
+  }
+});
 
 export const authOptions: AuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
-  providers: [
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID || "",
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
-    }),
-  ],
+  providers,
   pages: {
     signIn: "/auth/signin",
   },
