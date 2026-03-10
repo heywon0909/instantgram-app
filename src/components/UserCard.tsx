@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { SearchUser } from "../service/sanity/user";
+
 import Avatar from "./Avatar";
+import { SearchUser } from "../model/user";
 
 type Props = {
   user: SearchUser;
