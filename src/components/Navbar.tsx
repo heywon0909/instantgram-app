@@ -46,8 +46,10 @@ export default function Navbar() {
       <nav>
         <ul className="flex gap-4 items-center p-4">
           {menu.map(({ href, icon, title, clickedIcon }) => (
-            <li key={href} aria-label={title}>
-              <Link href={href}>{path === href ? clickedIcon : icon}</Link>
+            <li key={href}>
+              <Link href={href} aria-label={title}>
+                {path === href ? clickedIcon : icon}
+              </Link>
             </li>
           ))}
           {user && (
